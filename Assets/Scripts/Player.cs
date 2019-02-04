@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-    //Power Ups
+    //Player Statuses
     public bool canTripleShot = false;
     public bool isSpeedBoostActive = false;
+    public int lives = 3;
+
     //Movement
     [SerializeField] private float _speed = 5.0f;
+
     //Attacking
     [SerializeField] private GameObject _laserPrefab;
     [SerializeField] private GameObject _tripleShotPrefab;
@@ -62,6 +65,15 @@ public class Player : MonoBehaviour {
 
                 _canFire = Time.time + _fireRate;
             }
+        }
+    }
+
+    //Damage
+    public void Damage() {
+        lives--;
+
+        if (lives < 1) {
+            Destroy(this.gameObject);
         }
     }
 
