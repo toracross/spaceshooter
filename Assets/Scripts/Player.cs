@@ -7,8 +7,8 @@ public class Player : MonoBehaviour {
     //Player Statuses
     public bool canTripleShot = false;
     public bool isSpeedBoostActive = false;
+    public bool shieldsActive = false;
     public int lives = 1;
-    [SerializeField] private GameObject _explosionPrefab;
 
     //Movement
     [SerializeField] private float _speed = 5.0f;
@@ -18,6 +18,12 @@ public class Player : MonoBehaviour {
     [SerializeField] private GameObject _tripleShotPrefab;
     [SerializeField] private readonly float _fireRate = 0.25f;
     [SerializeField] private float _canFire = 0.0f;
+
+    //Shield
+    [SerializeField] private GameObject _shieldGameObject;
+
+    //Death
+    [SerializeField] private GameObject _explosionPrefab;
 
     //Start is called before the first frame update
     private void Start() {
@@ -69,8 +75,21 @@ public class Player : MonoBehaviour {
         }
     }
 
+    //Shields
+    public void EnableShields() {
+        shieldsActive = true;
+        _shieldGameObject.SetActive(true);
+    }
+
     //Damage
     public void Damage() {
+
+        if (shieldsActive) {
+            shieldsActive = false;
+            _shieldGameObject.SetActive(false);
+            return;
+        }
+
         lives--;
 
         if (lives < 1) {
