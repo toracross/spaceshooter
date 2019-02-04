@@ -27,7 +27,7 @@ public class Player : MonoBehaviour {
 
     private void Movement() {
         float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical"); 
+        float vertical = Input.GetAxis("Vertical");
 
         transform.Translate(Vector3.right * _speed * horizontal * Time.deltaTime);
         transform.Translate(Vector3.up * _speed * vertical * Time.deltaTime);
