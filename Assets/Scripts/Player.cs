@@ -6,12 +6,13 @@ public class Player : MonoBehaviour {
 
     //Power Ups
     public bool canTripleShot = false;
+    public bool isSpeedBoostActive = false;
     //Movement
     [SerializeField] private float _speed = 5.0f;
     //Attacking
     [SerializeField] private GameObject _laserPrefab;
     [SerializeField] private GameObject _tripleShotPrefab;
-    [SerializeField] private float _fireRate = 0.25f;
+    [SerializeField] private readonly float _fireRate = 0.25f;
     [SerializeField] private float _canFire = 0.0f;
 
     //Start is called before the first frame update
@@ -28,6 +29,11 @@ public class Player : MonoBehaviour {
     private void Movement() {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
+
+        if (isSpeedBoostActive) {
+            transform.Translate(Vector3.right * _speed * 1.5f * horizontal * Time.deltaTime);
+            transform.Translate(Vector3.up * _speed * 1.5f * vertical * Time.deltaTime);
+        }
 
         transform.Translate(Vector3.right * _speed * horizontal * Time.deltaTime);
         transform.Translate(Vector3.up * _speed * vertical * Time.deltaTime);
@@ -59,6 +65,18 @@ public class Player : MonoBehaviour {
         }
     }
 
+    //Speed Boost
+    public void SpeedBoostPowerupOn() {
+        isSpeedBoostActive = true;
+        StartCoroutine(SpeedBoostPowerDownRoutine());
+    }
+
+    IEnumerator SpeedBoostPowerDownRoutine() {
+        yield return new WaitForSeconds(5.0f);
+        isSpeedBoostActive = false;
+    }
+
+    //Triple Shot
     public void TripleShotPowerupOn() {
         canTripleShot = true;
         StartCoroutine(TripleShotPowerDownRoutine());

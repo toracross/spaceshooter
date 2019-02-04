@@ -5,6 +5,7 @@ using UnityEngine;
 public class PowerUp : MonoBehaviour {
 
     [SerializeField] private float _speed = 3.0f;
+    [SerializeField] private int _powerUpID = 0;
 
     // Start is called before the first frame update
     void Start() {
@@ -25,9 +26,12 @@ public class PowerUp : MonoBehaviour {
 
             //Make sure player is not null
             if (player != null) {
-
-                //Begin the timer to remove triple shot
-                player.TripleShotPowerupOn();
+                switch (_powerUpID) {
+                    case 0: player.TripleShotPowerupOn(); break;
+                    case 1: player.SpeedBoostPowerupOn(); break;
+                    case 2: player.TripleShotPowerupOn(); break;
+                    default: break;
+                }
 
                 //Destroy the powerup.
                 Destroy(this.gameObject);
