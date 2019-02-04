@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemyAI : MonoBehaviour {
 
     [SerializeField] private readonly float _speed = 2.0f;
+    [SerializeField] private GameObject _enemyExplosionPrefab;
 
     // Start is called before the first frame update
     void Start() {
@@ -25,16 +26,17 @@ public class EnemyAI : MonoBehaviour {
         switch (other.tag) {
             case "Laser":
                 Destroy(other.gameObject);
-                Destroy(this.gameObject); 
                 break;
             case "Player":
                 Player player = other.GetComponent<Player>();
                 if (player != null) {
                     player.Damage();
                 }
-                Destroy(this.gameObject);
                 break;
             default: break;
         }
+
+        Instantiate(_enemyExplosionPrefab, transform.position, Quaternion.identity);
+        Destroy(this.gameObject);
     }
 }

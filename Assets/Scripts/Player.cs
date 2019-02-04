@@ -7,7 +7,8 @@ public class Player : MonoBehaviour {
     //Player Statuses
     public bool canTripleShot = false;
     public bool isSpeedBoostActive = false;
-    public int lives = 3;
+    public int lives = 1;
+    [SerializeField] private GameObject _explosionPrefab;
 
     //Movement
     [SerializeField] private float _speed = 5.0f;
@@ -73,6 +74,7 @@ public class Player : MonoBehaviour {
         lives--;
 
         if (lives < 1) {
+            Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
             Destroy(this.gameObject);
         }
     }
