@@ -8,7 +8,7 @@ public class Player : MonoBehaviour {
     public bool canTripleShot = false;
     public bool isSpeedBoostActive = false;
     public bool shieldsActive = false;
-    public int lives = 1;
+    public int lives = 3;
 
     //Movement
     [SerializeField] private float _speed = 5.0f;
@@ -25,9 +25,12 @@ public class Player : MonoBehaviour {
     //Death
     [SerializeField] private GameObject _explosionPrefab;
 
+    //UI Manager
+    [SerializeField] private UIManager _uiManager;
+
     //Start is called before the first frame update
     private void Start() {
-       
+        _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
     }
 
     //Update is called once per frame
@@ -91,6 +94,10 @@ public class Player : MonoBehaviour {
         }
 
         lives--;
+
+        if (_uiManager != null) {
+            _uiManager.UpdateLives(lives);
+        }
 
         if (lives < 1) {
             Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
