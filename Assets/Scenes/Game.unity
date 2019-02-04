@@ -204,7 +204,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a3c394ef528640afb3ecaeb1d0e3f89, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  _speed: 5
+  _laserPrefab: {fileID: 0}
+  _fireRate: 0.25
+  _canFire: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -337,7 +340,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9870e8a23fa8146bc8d395c3261a29b6, type: 2}
+  - {fileID: 2100000, guid: 83db4959073a7459583d60e95ba739bb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
