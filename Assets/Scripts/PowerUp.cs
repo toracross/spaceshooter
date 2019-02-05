@@ -6,10 +6,11 @@ public class PowerUp : MonoBehaviour {
 
     [SerializeField] private float _speed = 3.0f;
     [SerializeField] private int _powerUpID;
+    [SerializeField] private AudioClip _clip;
 
     // Start is called before the first frame update
     void Start() {
-        
+
     }
 
     // Update is called once per frame
@@ -38,6 +39,7 @@ public class PowerUp : MonoBehaviour {
                 }
 
                 //Destroy the powerup.
+                AudioSource.PlayClipAtPoint(_clip, Camera.main.transform.position);
                 Destroy(this.gameObject);
             }
 

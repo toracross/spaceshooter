@@ -6,8 +6,8 @@ public class EnemyAI : MonoBehaviour {
 
     [SerializeField] private readonly float _speed = 4.0f;
     [SerializeField] private GameObject _enemyExplosionPrefab;
+    [SerializeField] private AudioClip _clip;
     private UIManager _uiManager;
-
 
     // Start is called before the first frame update
     void Start() {
@@ -44,6 +44,7 @@ public class EnemyAI : MonoBehaviour {
 
         Instantiate(_enemyExplosionPrefab, transform.position, Quaternion.identity);
         _uiManager.UpdateScore(score);
+        AudioSource.PlayClipAtPoint(_clip, Camera.main.transform.position);
         Destroy(this.gameObject);
     }
 }

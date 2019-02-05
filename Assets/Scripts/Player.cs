@@ -29,6 +29,7 @@ public class Player : MonoBehaviour {
     private UIManager _uiManager;
     private GameManager _gameManager;
     private SpawnManager _spawnManager;
+    private AudioSource _audioSource;
 
     //Start is called before the first frame update
     private void Start() {
@@ -38,6 +39,7 @@ public class Player : MonoBehaviour {
 
         _uiManager.UpdateLives(lives);
         _spawnManager.StartSpawnRoutines();
+        _audioSource = GetComponent<AudioSource>();
     }
 
     //Update is called once per frame
@@ -80,6 +82,7 @@ public class Player : MonoBehaviour {
                     Instantiate(_laserPrefab, transform.position + new Vector3(0, 0.88f, 0), Quaternion.identity);
                 }
 
+                _audioSource.Play();
                 _canFire = Time.time + _fireRate;
             }
         }

@@ -122,6 +122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _enemyExplosionPrefab: {fileID: 6512622565722498608, guid: 2429da02c9ca94573b2dede9442cfe98,
     type: 3}
+  _clip: {fileID: 8300000, guid: a885c043fab7e46438bba03ba9dab6bc, type: 3}
 --- !u!114 &6133874897958874876
 MonoBehaviour:
   m_ObjectHideFlags: 0

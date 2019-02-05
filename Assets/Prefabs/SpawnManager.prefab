@@ -43,5 +43,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9a6b23822dd8441fb718d9ece53aa34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyShipPrefab: {fileID: 0}
-  powerups: []
+  enemyShipPrefab: {fileID: 7046967614320175414, guid: 47a866cb608a340f4a0f2dbd7209f0e3,
+    type: 3}
+  powerups:
+  - {fileID: 7049988739750651365, guid: 240b6b5c3c9cf4fe799090cdc17a6fd0, type: 3}
+  - {fileID: 4117284320882594048, guid: cb693b7281b634c9e83966fd1ac7d6e6, type: 3}
+  - {fileID: 5819558709454202679, guid: 8c600579b47e94bf4a4033d0ede74810, type: 3}
