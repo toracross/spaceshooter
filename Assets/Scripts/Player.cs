@@ -52,6 +52,15 @@ public class Player : MonoBehaviour {
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
 
+        //Mobile Controls - Needs work, we can't actually move.
+        //if (Input.GetTouch(0).phase == TouchPhase.Began) {
+        //    Vector3 touchDeltaPosition = Input.GetTouch(0).deltaPosition;
+
+        //    transform.Translate(touchDeltaPosition * _speed * Time.deltaTime);
+        //}
+
+
+        //Keyboard Controls
         if (isSpeedBoostActive) {
             transform.Translate(Vector3.right * _speed * 1.5f * horizontal * Time.deltaTime);
             transform.Translate(Vector3.up * _speed * 1.5f * vertical * Time.deltaTime);
@@ -75,16 +84,22 @@ public class Player : MonoBehaviour {
 
     private void Attack() {
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) {
-            if (Time.time > _canFire) {
-                if (canTripleShot) {
-                    Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
-                } else {
-                    Instantiate(_laserPrefab, transform.position + new Vector3(0, 0.88f, 0), Quaternion.identity);
-                }
+            ShootLaser();
+        } else if (Input.GetTouch(0).phase == TouchPhase.Ended) {
+            ShootLaser();
+        }
+    }
 
-                _audioSource.Play();
-                _canFire = Time.time + _fireRate;
+    private void ShootLaser() {
+        if (Time.time > _canFire) {
+            if (canTripleShot) {
+                Instantiate(_tripleShotPrefab, transform.position, Quaternion.identity);
+            } else {
+                Instantiate(_laserPrefab, transform.position + new Vector3(0, 0.88f, 0), Quaternion.identity);
             }
+
+            _audioSource.Play();
+            _canFire = Time.time + _fireRate;
         }
     }
 

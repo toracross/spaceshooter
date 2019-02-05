@@ -12,7 +12,6 @@ public class UIManager : MonoBehaviour {
     public GameObject titleScreen;
 
     public void UpdateLives(int currentLives) {
-        Debug.Log(currentLives);
         playerLivesImage.sprite = lives[currentLives];
     }
 
