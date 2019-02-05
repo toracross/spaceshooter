@@ -25,12 +25,19 @@ public class Player : MonoBehaviour {
     //Death
     [SerializeField] private GameObject _explosionPrefab;
 
-    //UI Manager
-    [SerializeField] private UIManager _uiManager;
+    //Managers
+    private UIManager _uiManager;
+    private GameManager _gameManager;
+    private SpawnManager _spawnManager;
 
     //Start is called before the first frame update
     private void Start() {
         _uiManager = GameObject.Find("Canvas").GetComponent<UIManager>();
+        _gameManager = GameObject.Find("GameManager").GetComponent<GameManager>();
+        _spawnManager = GameObject.Find("SpawnManager").GetComponent<SpawnManager>();
+
+        _uiManager.UpdateLives(lives);
+        _spawnManager.StartSpawnRoutines();
     }
 
     //Update is called once per frame
@@ -101,6 +108,8 @@ public class Player : MonoBehaviour {
 
         if (lives < 1) {
             Instantiate(_explosionPrefab, transform.position, Quaternion.identity);
+            _uiManager.ShowTitleScreen();
+            _gameManager.gameOver = true;
             Destroy(this.gameObject);
         }
     }

@@ -197,7 +197,7 @@ MonoBehaviour:
   canTripleShot: 0
   isSpeedBoostActive: 0
   shieldsActive: 0
-  lives: 1
+  lives: 3
   _speed: 5
   _laserPrefab: {fileID: 3957018031025985479, guid: b5f35cee22ae34f0093f308fd8954752,
     type: 3}
@@ -207,6 +207,7 @@ MonoBehaviour:
   _shieldGameObject: {fileID: 22215416}
   _explosionPrefab: {fileID: 7022823096363812145, guid: ba968dfbcf0e14689851ac23b4e9b036,
     type: 3}
+  _uiManager: {fileID: 0}
 --- !u!61 &2342571264204487563
 BoxCollider2D:
   m_ObjectHideFlags: 0
